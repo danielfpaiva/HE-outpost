@@ -11,7 +11,7 @@
     <div class="p-3">
       <div class="d-flex align-items-center justify-content-between mb-4">
         <h5 class="m-0">Menu</h5>
-        <b-button variant="link" class="p-0 text-light" @click="$bvToggle.toggle('sidebar-menu')">
+        <b-button variant="link" class="p-0 text-light" @click="this.$root.$bvToggle.toggle('sidebar-menu')">
           <fa-icon icon="times" />
         </b-button>
       </div>
