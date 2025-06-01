@@ -17,6 +17,7 @@
 
               <template v-if="createdAt.getTime() !== updatedAt.getTime()">
                 (<span v-b-tooltip.hover class="small" :title="updatedAt.toLocaleString()">Edited</span>)
+                )
               </template>
             </div>
 
