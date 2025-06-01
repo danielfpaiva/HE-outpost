@@ -58,7 +58,7 @@ export default {
         this.$cookies.remove('nftm_refresh_token')
       }
     })
-    
+
     // Add Google Fonts
     const link = document.createElement('link')
     link.rel = 'stylesheet'
