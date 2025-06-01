@@ -11,7 +11,7 @@
           <fa-icon icon="heart" class="text-info" />
         </button>
 
-        <div :id="`${id}-upvotes`" class="cursor-pointer">
+        <div :id="`${id}-upvotes`" class="cursor-pointer ml-1">
           {{ upVotes.length }}
         </div>
       </div>
@@ -26,7 +26,7 @@
           <fa-icon icon="heart-broken" class="text-danger" />
         </button>
 
-        <div :id="`${id}-downvotes`" class="cursor-pointer">
+        <div :id="`${id}-downvotes`" class="cursor-pointer ml-1">
           {{ downVotes.length }}
         </div>
       </div>
@@ -315,5 +315,4 @@ export default {
 </script>
 
 <style>
-
 </style>

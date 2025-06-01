@@ -16,9 +16,9 @@
           </nuxt-link>
         </div>
 
-        <b-row>
-          <b-col lg="6" class="mt-5">
-            <h3>Popular</h3>
+        <b-row class="mt-5">
+          <b-col lg="6" class="mb-4">
+            <h3 class="mb-3 font-weight-bold">Popular</h3>
 
             <post-summary v-for="(post,i) of trending" :key="i" :post="post" type="feed" />
 
@@ -29,8 +29,8 @@
             </div>
           </b-col>
 
-          <b-col lg="6" class="mt-5">
-            <h3>Latest</h3>
+          <b-col lg="6" class="mb-4">
+            <h3 class="mb-3 font-weight-bold">Latest</h3>
 
             <post-summary v-for="(post,i) of created" :key="i" :post="post" type="feed" />
 
@@ -99,5 +99,4 @@ export default {
 </script>
 
 <style>
-
 </style>

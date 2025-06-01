@@ -1,11 +1,11 @@
 $dark-color: #f5f5f4;
-$dark-link-color: #c7d3df;
-$dark-bg-color: #1e2329;
-$dark-secondary: #2d333b;
-$dark-border-color: #444c56;
+$dark-link-color: #7f9de0;
+$dark-bg-color: #121212;
+$dark-secondary: #1e1e1e;
+$dark-border-color: #333;
 
-$dark-input-bg-color: lighten($dark-secondary, 10%);
-$dark-input-border-color: lighten($dark-secondary, 20%);
+$dark-input-bg-color: lighten($dark-secondary, 5%);
+$dark-input-border-color: lighten($dark-secondary, 10%);
 $dark-input-color: #fff;
 
 @function encodeColor($string) {
@@ -20,13 +20,15 @@ $dark-input-color: #fff;
 }
 
 .dark-mode {
-  scrollbar-color: lighten($dark-border-color, 20) $dark-secondary;
+  scrollbar-color: lighten($dark-border-color, 10) $dark-secondary;
 
   &::-webkit-scrollbar {
     background-color: $dark-secondary;
+    width: 8px;
   }
   &::-webkit-scrollbar-thumb {
-    background-color: lighten($dark-border-color, 20);
+    background-color: lighten($dark-border-color, 10);
+    border-radius: 4px;
   }
 
   body {
@@ -40,7 +42,7 @@ $dark-input-color: #fff;
     &:active,
     &:hover,
     &:focus {
-      color: darken($dark-link-color, 10);
+      color: lighten($dark-link-color, 10);
       text-decoration: none;
     }
   }
@@ -51,15 +53,19 @@ $dark-input-color: #fff;
 
   blockquote {
     color: $dark-color;
-    border-color: $dark-bg-color;
+    border-color: $dark-border-color;
+    background-color: rgba(255, 255, 255, 0.05);
   }
 
   pre {
     color: $dark-color;
-    border-color: $dark-bg-color;
+    border-color: $dark-border-color;
+    background-color: rgba(255, 255, 255, 0.05);
   }
 
   .navbar-light {
+    background-color: $dark-secondary;
+    
     .navbar-toggler-icon {
       background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.5%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
     }
@@ -123,19 +129,20 @@ $dark-input-color: #fff;
 
   .table {
     color: $dark-color;
-    border-color: $dark-bg-color;
+    border-color: $dark-border-color;
 
     th,
     td {
-      border-color: $dark-bg-color;
+      border-color: $dark-border-color;
     }
 
     &.table-striped tbody tr:nth-of-type(2n + 1) {
-      background-color: rgba(0, 0, 0, 0.1);
+      background-color: rgba(255, 255, 255, 0.03);
     }
 
     &.table-hover tbody tr:hover {
       color: $dark-color;
+      background-color: rgba(255, 255, 255, 0.05);
     }
 
     &.table-sm {
@@ -149,6 +156,7 @@ $dark-input-color: #fff;
   .dropdown-menu,
   .card {
     background-color: $dark-secondary;
+    border-color: $dark-border-color;
   }
 
   .dropdown-item {
@@ -156,7 +164,7 @@ $dark-input-color: #fff;
 
     &:hover,
     &:focus {
-      background-color: lighten($color: $dark-secondary, $amount: 10);
+      background-color: lighten($color: $dark-secondary, $amount: 5);
     }
   }
 
@@ -277,12 +285,14 @@ $dark-input-color: #fff;
 
       &:hover,
       &:focus {
-        color: darken($dark-link-color, 10);
+        color: lighten($dark-link-color, 10);
+        background-color: lighten($dark-bg-color, 5) !important;
       }
     }
 
     &.active .page-link {
-      background-color: $dark-secondary !important;
+      background-color: $dark-link-color !important;
+      color: $dark-bg-color !important;
     }
   }
 
@@ -298,6 +308,7 @@ $dark-input-color: #fff;
 
   .v-note-wrapper {
     border-color: $dark-input-border-color !important;
+    background-color: $dark-secondary !important;
 
     .v-note-panel .v-note-edit.divarea-wrapper.single-edit {
       color: $dark-color !important;
@@ -326,7 +337,7 @@ $dark-input-color: #fff;
       color: $dark-color !important;
 
       &:hover {
-        background-color: rgba(255, 255, 255, 0.3) !important;
+        background-color: rgba(255, 255, 255, 0.1) !important;
         color: $dark-color !important;
       }
     }
@@ -359,7 +370,7 @@ $dark-input-color: #fff;
   .vote-weight-popover {
     &.popover {
       min-width: 300px;
-      background-color: $dark-bg-color;
+      background-color: $dark-secondary;
     }
 
     .popover-body {
@@ -367,7 +378,7 @@ $dark-input-color: #fff;
     }
 
     .arrow::after {
-      border-right-color: $dark-bg-color;
+      border-right-color: $dark-secondary;
     }
   }
 
@@ -384,7 +395,7 @@ $dark-input-color: #fff;
   -------------------------------*/
   .author-card {
     .author-dropdown {
-      background-color: $dark-bg-color;
+      background-color: $dark-secondary;
       border: 1px solid $dark-border-color;
     }
   }
@@ -394,6 +405,14 @@ $dark-input-color: #fff;
       background: rgba($color: $dark-bg-color, $alpha: 0.8);
       color: $dark-color;
     }
+    
+    .tag-link {
+      background-color: rgba(255, 255, 255, 0.05);
+      
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+    }
   }
 
   /*-------------------------------
@@ -401,7 +420,8 @@ $dark-input-color: #fff;
   -------------------------------*/
   .nft-card {
     border-color: $dark-border-color;
-    box-shadow: 0 0 8px 0 rgba($color: $light, $alpha: 0.2);
+    box-shadow: 0 0 8px 0 rgba($color: $light, $alpha: 0.1);
+    background-color: $dark-secondary;
   }
 
   .transaction-history-list {
@@ -419,7 +439,7 @@ $dark-input-color: #fff;
       background-color: $dark-secondary;
 
       &:nth-child(even) {
-        background-color: rgba(0, 0, 0, 0.05);
+        background-color: rgba(255, 255, 255, 0.03);
       }
     }
   }
@@ -434,6 +454,10 @@ $dark-input-color: #fff;
 
     .search-label {
       color: $dark-color;
+      
+      &.active {
+        color: $dark-link-color;
+      }
     }
 
     .search-input {
@@ -445,7 +469,7 @@ $dark-input-color: #fff;
 
     .divider {
       &:after {
-        background-color: $border-color;
+        background-color: $dark-link-color;
       }
     }
   }
@@ -467,15 +491,23 @@ $dark-input-color: #fff;
     background-color: $dark-secondary;
 
     input {
-      color: lighten($color: $dark-secondary, $amount: 50);
+      color: $dark-color;
 
       &::placeholder {
-        color: lighten($color: $dark-secondary, $amount: 50);
+        color: darken($color: $dark-color, $amount: 30);
       }
     }
 
     button {
-      color: #fff;
+      color: $dark-color;
+      
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+      }
     }
+  }
+  
+  .page-header {
+    background: linear-gradient(135deg, $dark-secondary 0%, $dark-bg-color 100%);
   }
 }

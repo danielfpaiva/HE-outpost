@@ -5,7 +5,7 @@
         {{ post.title }}
       </h1>
 
-      <div class="d-flex justify-content-between mb-2">
+      <div class="d-flex justify-content-between mb-3">
         <div class="d-flex">
           <b-avatar :src="`${$config.IMAGES_CDN}u/${post.author}/avatar`" variant="dark" size="40px" class="mr-2" />
 
@@ -39,7 +39,7 @@
         </div>
       </div>
 
-      <div v-if="post.depth >= 1" class="border p-3">
+      <div v-if="post.depth >= 1" class="border p-3 mb-4 rounded">
         <p class="font-weight-bold">
           You are viewing a single comment's thread:
         </p>
@@ -411,5 +411,4 @@ export default {
 </script>
 
 <style>
-
 </style>

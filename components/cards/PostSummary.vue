@@ -74,7 +74,7 @@
       </template>
 
       <template v-else>
-        <nuxt-link :to="{ name:'user-post', params: { user: post.author, post: post.permlink }}" class="h6">
+        <nuxt-link :to="{ name:'user-post', params: { user: post.author, post: post.permlink }}" class="h5 font-weight-bold d-block mt-2">
           {{ post.title }}
         </nuxt-link>
 
@@ -219,5 +219,4 @@ export default {
 </script>
 
 <style>
-
 </style>

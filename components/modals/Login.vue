@@ -8,7 +8,7 @@
           </div>
 
           <div class="text-center">
-            <b-button variant="success" block @click="logMeIn">
+            <b-button variant="primary" block @click="logMeIn">
               Login with Keychain
             </b-button>
 
@@ -19,7 +19,7 @@
 
               <ul class="list-inline">
                 <li class="list-inline-item">
-                  <a href="https://chrome.google.com/webstore/detail/hive-keychain/jcacnejopjdphbnjgfaaobbfafkihpep" target="_blank">Google Chrome/Opera/Brave</a>
+                  <a href="https://chrome.google.com/webstore/detail/hive-keychain/jcacnejopjdphbnjgfaaobbfafkihpep" target="_blank">Chrome/Opera/Brave</a>
                 </li>
                 <li class="list-inline-item">
                   <a href="https://addons.mozilla.org/en-GB/firefox/addon/hive-keychain/" target="_blank">Firefox</a>
@@ -34,7 +34,7 @@
             </template>
             <hr>
 
-            <b-button variant="secondary" block @click.prevent="$bvModal.show('smartLock')">
+            <b-button variant="outline-secondary" block @click.prevent="$bvModal.show('smartLock')">
               SmartLock
             </b-button>
           </div>
@@ -141,5 +141,4 @@ export default {
 </script>
 
 <style>
-
 </style>

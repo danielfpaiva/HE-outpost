@@ -24,7 +24,8 @@ export default {
         { hid: 'twitter-title', name: 'twitter:title', content: config.APP_TITLE },
         { hid: 'twitter-card', name: 'twitter:card', content: 'summary_large_image' },
         { hid: 'twitter-description', name: 'twitter:description', content: description },
-        { hid: 'twitter-image', name: 'twitter:image', content: `${config.APP_DOMAIN}/cover.png` }
+        { hid: 'twitter-image', name: 'twitter:image', content: `${config.APP_DOMAIN}/cover.png` },
+        { name: 'theme-color', content: '#4c74b9' }
       ],
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
@@ -171,7 +172,7 @@ export default {
     component: 'fa',
     suffix: true,
     icons: {
-      solid: ['faUsers', 'faLink', 'faMapMarkedAlt', 'faCheck', 'faArrowRight', 'faPlus', 'faHeart', 'faHeartBroken', 'faTimes', 'faUndo', 'faRedo', 'faPencilAlt', 'faCircleNotch', 'faSortAmountDown', 'faCommentAlt', 'faRetweet', 'faRedoAlt', 'faEllipsisH', 'faAngleUp', 'faAngleDown', 'faAngleRight', 'faAngleLeft', 'faVideo', 'faMusic', 'faTags', 'faList', 'faShoppingCart', 'faCartPlus', 'faCartArrowDown', 'faChevronUp', 'faChevronDown', 'faShoppingBasket', 'faExclamationCircle', 'faSync', 'faPercent', 'faLongArrowAltUp', 'faLongArrowAltDown', 'faInfoCircle', 'faBars', 'faExternalLinkAlt', 'faEye'],
+      solid: ['faUsers', 'faLink', 'faMapMarkedAlt', 'faCheck', 'faArrowRight', 'faPlus', 'faHeart', 'faHeartBroken', 'faTimes', 'faUndo', 'faRedo', 'faPencilAlt', 'faCircleNotch', 'faSortAmountDown', 'faCommentAlt', 'faRetweet', 'faRedoAlt', 'faEllipsisH', 'faAngleUp', 'faAngleDown', 'faAngleRight', 'faAngleLeft', 'faVideo', 'faMusic', 'faTags', 'faList', 'faShoppingCart', 'faCartPlus', 'faCartArrowDown', 'faChevronUp', 'faChevronDown', 'faShoppingBasket', 'faExclamationCircle', 'faSync', 'faPercent', 'faLongArrowAltUp', 'faLongArrowAltDown', 'faInfoCircle', 'faBars', 'faExternalLinkAlt', 'faEye', 'faRss', 'faFire', 'faStar', 'faImage', 'faFileAlt', 'faExchangeAlt', 'faChartLine'],
       regular: ['faMoon', 'faSun', 'faTimesCircle', 'faComments', 'faCommentAlt'],
       brands: []
     }
@@ -243,6 +244,8 @@ export default {
           'https://hcaptcha.com',
           'https://*.hcaptcha.com',
           'localhost:8080',
+          'https://fonts.googleapis.com',
+          'https://fonts.gstatic.com',
           config.OUTPOST_ONBOARD_API,
           ...config.NODES
         ],

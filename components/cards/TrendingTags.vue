@@ -32,16 +32,15 @@ export default {
 
   methods: {
     scrollLeft () {
-      this.$refs.scrollingTags.scrollLeft -= 50
+      this.$refs.scrollingTags.scrollLeft -= 100
     },
 
     scrollRight () {
-      this.$refs.scrollingTags.scrollLeft += 50
+      this.$refs.scrollingTags.scrollLeft += 100
     }
   }
 }
 </script>
 
 <style>
-
 </style>

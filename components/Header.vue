@@ -3,7 +3,7 @@
     <b-navbar fixed="top" type="light" variant="light">
       <b-container fluid>
         <b-navbar-brand to="/">
-          <img src="/logo.png" class="logo">
+          <img src="/logo.png" class="logo" alt="Logo">
         </b-navbar-brand>
 
         <b-navbar-nav class="d-none d-md-flex">
@@ -42,7 +42,7 @@
         </b-navbar-nav>
 
         <b-navbar-nav class="ml-auto align-items-center">
-          <b-nav-item v-if="$config.NFT_ENABLED && $route.name && ($route.name.startsWith('nfts') || ['user-collection', 'user-gallery', 'user-collection-series', 'user-gallery-series'].includes($route.name))" link-classes="navbar-btn rounded" @click.prevent="$bvModal.show('activityModal')">
+          <b-nav-item v-if="$config.NFT_ENABLED && $route.name && ($route.name.startsWith('nfts') || ['user-collection', 'user-gallery', 'user-collection-series', 'user-gallery-series'].includes($route.name))" link-classes="navbar-btn" @click.prevent="$bvModal.show('activityModal')">
             <fa-icon icon="shopping-basket" />
 
             <div class="cart-item-count badge badge-primary">
@@ -51,7 +51,7 @@
           </b-nav-item>
 
           <template v-if="$auth.loggedIn">
-            <b-nav-item :to="{ name:'publish' }" link-classes="navbar-btn rounded">
+            <b-nav-item :to="{ name:'publish' }" link-classes="navbar-btn">
               <fa-icon icon="pencil-alt" />
             </b-nav-item>
 
@@ -93,6 +93,8 @@
                 Settings
               </b-dropdown-item>
 
+              <b-dropdown-divider></b-dropdown-divider>
+
               <b-dropdown-item @click.prevent="$auth.logout()">
                 Logout
               </b-dropdown-item>
@@ -113,7 +115,7 @@
             </b-nav-item>
           </template>
 
-          <b-nav-item v-b-toggle.sidebar-menu link-classes="ml-2 mr-0 navbar-btn rounded">
+          <b-nav-item v-b-toggle.sidebar-menu link-classes="ml-2 mr-0 navbar-btn">
             <fa-icon icon="bars" />
           </b-nav-item>
         </b-navbar-nav>
@@ -152,5 +154,4 @@ export default {
 </script>
 
 <style>
-
 </style>
