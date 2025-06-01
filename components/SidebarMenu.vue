@@ -15,7 +15,7 @@
           <fa-icon icon="times" />
         </b-button>
       </div>
-      
+
       <b-list-group class="d-lg-none" flush>
         <b-list-group-item v-if="$auth.loggedIn" :to="{name:'user-feed', params:{user: $auth.user.username}}">
           <fa-icon icon="rss" class="mr-2" /> Feed
