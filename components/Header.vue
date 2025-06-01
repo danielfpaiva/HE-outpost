@@ -114,10 +114,6 @@
               Sign up
             </b-nav-item>
           </template>
-
-          <b-nav-item v-b-toggle.sidebar-menu link-classes="ml-2 mr-0 navbar-btn">
-            <fa-icon icon="bars" />
-          </b-nav-item>
         </b-navbar-nav>
       </b-container>
     </b-navbar>

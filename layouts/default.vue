@@ -15,8 +15,6 @@
     <Login />
     <SignUp v-if="$config.OUTPOST_ONBOARD" />
 
-    <sidebar-menu />
-
     <notifications :duration="15000" position="top right" />
 
     <client-only>
@@ -42,8 +40,7 @@ export default {
     BackToTop,
     Header,
     Login,
-    SignUp: () => import(/* webpackChunkName: "SignUpModal" */ '@/components/modals/SignUp.vue'),
-    SidebarMenu: () => import(/* webpackChunkName: "SidebarMenu" */ '@/components/SidebarMenu.vue')
+    SignUp: () => import(/* webpackChunkName: "SignUpModal" */ '@/components/modals/SignUp.vue')
   },
 
   async fetch () {
