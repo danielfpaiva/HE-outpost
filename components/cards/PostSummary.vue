@@ -13,11 +13,11 @@
 
     <div class="post-card-content">
       <div v-if="type === 'user-feed' && post.author !== user" class="reblog-text mb-2">
-        <fa-icon icon="redo"/> reblogged
+        <fa-icon icon="redo" /> reblogged
       </div>
 
       <div v-else-if="type === 'feed' && rebloggedBy.length > 0" class="reblog-text mb-2">
-        <fa-icon icon="redo"/>
+        <fa-icon icon="redo" /> 
         <nuxt-link v-for="(reblogger, i) of rebloggedBy" :key="i" :to="{name:'user', params:{user: reblogger}}">
           {{ reblogger }}
         </nuxt-link> reblogged
@@ -43,7 +43,6 @@
 
               <template v-if="type !== 'comments'">
                 <span class="mx-1">•</span>
-                <!-- Fix: Only render nuxt-link if post.parent_permlink exists -->
                 <template v-if="post.parent_permlink">
                   <nuxt-link :to="{name:'sort-tag', params:{sort:'trending', tag: post.parent_permlink}}">
                     {{ getCommunity(post.parent_permlink) }}
@@ -64,7 +63,7 @@
 
       <template v-if="!shouldShowPost">
         <template v-if="$auth.loggedIn">
-          <a class="cursor-pointer" @click.prevent="showNsfw = true">Reveal this post</a> or adjust your
+          <a class="cursor-pointer" @click.prevent="showNsfw = true">Reveal this post</a> or adjust your 
           <nuxt-link :to="{name:'user-settings', params:{user:$auth.user.username}}">display preferences</nuxt-link>
         </template>
         <template v-else>
@@ -84,7 +83,14 @@
 
       <div class="post-card-stats mt-3">
         <div class="post-card-stat">
-          <fa-icon :icon="['far', 'heart']" /> {{ post.active_votes.length }}
+          <votes
+            :author="post.author"
+            :permlink="post.permlink"
+            :active-votes="post.active_votes"
+            :rshares="post.vote_rshares"
+            :payout="post.pending_token || post.total_payout_value"
+            :is-comment="false"
+          />
         </div>
 
         <div class="post-card-stat">
@@ -92,7 +98,7 @@
         </div>
 
         <div class="post-card-stat">
-          <fa-icon icon="dollar-sign" /> {{ post.pending_token || post.total_payout_value }}
+          <payout :post="post" />
         </div>
 
         <div class="post-card-stat">
@@ -107,12 +113,16 @@
 import { mapGetters } from 'vuex'
 import { proxifyImageUrl } from '@/utils/proxify-url'
 import { extractImageLink, extractBodySummary } from '@/utils/extract-content'
+import Votes from '@/components/Votes.vue'
 import ExtraActions from '@/components/ExtraActions.vue'
+import Payout from '@/components/Payout.vue'
 
 export default {
   name: 'PostSummary',
 
   components: {
+    Votes,
+    Payout,
     ExtraActions
   },
 
@@ -124,8 +134,6 @@ export default {
 
   data () {
     return {
-      error: null,
-      errorText: '',
       showNsfw: false,
       nsfwPref: 'warn'
     }
