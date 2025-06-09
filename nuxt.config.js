@@ -25,7 +25,7 @@ export default {
         { hid: 'twitter-card', name: 'twitter:card', content: 'summary_large_image' },
         { hid: 'twitter-description', name: 'twitter:description', content: description },
         { hid: 'twitter-image', name: 'twitter:image', content: `${config.APP_DOMAIN}/cover.png` },
-        { name: 'theme-color', content: '#4c74b9' }
+        { name: 'theme-color', content: '#0d6efd' }
       ],
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }

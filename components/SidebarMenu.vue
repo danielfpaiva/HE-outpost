@@ -3,7 +3,7 @@
     id="sidebar-menu"
     right
     shadow
-    bg-variant="dark"
+    bg-variant="primary"
     text-variant="light"
     class="sidebar-menu"
     backdrop

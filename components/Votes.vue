@@ -8,7 +8,7 @@
         </button>
 
         <button v-else class="btn-vote" @click.prevent="requestBroadcastVote({author, permlink, weight: 0})">
-          <fa-icon icon="heart" class="text-info" />
+          <fa-icon icon="heart" class="text-primary" />
         </button>
 
         <div :id="`${id}-upvotes`" class="cursor-pointer ml-1">
