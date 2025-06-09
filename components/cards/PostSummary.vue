@@ -1,114 +1,100 @@
 <template>
-  <b-card class="post-summary">
-    <div v-if="type === 'user-feed' && post.author !== user" class="reblog-text">
-      <fa-icon icon="redo" /> reblogged
+  <div class="post-card">
+    <div v-if="thumbnail" class="post-card-image-container">
+      <div v-if="!shouldShowPost" class="nsfw-overlay">
+        <b-badge variant="danger">NSFW</b-badge>
+        <button class="btn btn-sm btn-light mt-2" @click="toggle">Reveal</button>
+      </div>
+      
+      <nuxt-link v-else :to="{ name:'user-post', params: { user: post.author, post: post.permlink }}">
+        <img :src="largeThumbnail" class="post-card-image" :alt="post.title">
+      </nuxt-link>
     </div>
-
-    <div v-else-if="type === 'feed' && rebloggedBy.length > 0" class="reblog-text">
-      <fa-icon icon="redo" /> <nuxt-link v-for="(reblogger , i) of rebloggedBy" :key="i" :to="{name:'user', params:{user: reblogger}}">
-        {{ reblogger }}
-      </nuxt-link> reblogged
-    </div>
-
-    <b-media>
-      <template v-if="thumbnail" #aside>
-        <div v-if="!shouldShowPost" class="text-center mx-auto mt-4">
-          <b-badge variant="danger">
-            NSFW
-          </b-badge>
-        </div>
-
-        <template v-else>
-          <nuxt-link :to="{ name:'user-post', params: { user: post.author, post: post.permlink }}" class="post-thumbnail">
-            <picture>
-              <source :srcset="largeThumbnail" media="(min-width: 1000px)">
-              <source :srcset="mediumThumbnail" media="(max-width: 999px)">
-              <img :srcset="thumbnail">
-            </picture>
-          </nuxt-link>
-        </template>
-      </template>
-
-      <div class="d-flex justify-content-between mb-2">
-        <div class="d-flex">
-          <b-avatar v-if="shouldShowPost" :src="`${$config.IMAGES_CDN}u/${post.author}/avatar`" variant="dark" size="40px" class="mr-2" />
-
-          <div class="d-flex flex-column">
-            <div>
-              <nuxt-link class="font-weight-bold" :to="{name:'user', params:{user:post.author}}">
-                @{{ post.author }}
-              </nuxt-link>
-
-              <b-badge variant="info">
-                {{ getReputation(post.author) }}
-              </b-badge>
-            </div>
-
-            <timeago class="small" :datetime="createdAt" :title="createdAt.toLocaleString()" :auto-update="60" />
-          </div>
-        </div>
-
-        <div v-if="type !== 'comments'" class="text-right">
-          <b-badge v-if="post.score_promoted > 0" variant="warning" class="text-uppercase p-2" tag="div">
-            Promoted
-          </b-badge>
-
-          <b-badge variant="success" class="text-uppercase" tag="div">
-            <nuxt-link class="d-inline-block p-1" :to="{name:'sort-tag', params:{sort:'trending', tag: post.parent_permlink}}">
-              {{ getCommunity(post.parent_permlink) }}
-            </nuxt-link>
-          </b-badge>
-        </div>
+    
+    <div class="post-card-content">
+      <div v-if="type === 'user-feed' && post.author !== user" class="reblog-text mb-2">
+        <fa-icon icon="redo" /> reblogged
       </div>
 
+      <div v-else-if="type === 'feed' && rebloggedBy.length > 0" class="reblog-text mb-2">
+        <fa-icon icon="redo" /> 
+        <nuxt-link v-for="(reblogger, i) of rebloggedBy" :key="i" :to="{name:'user', params:{user: reblogger}}">
+          {{ reblogger }}
+        </nuxt-link> reblogged
+      </div>
+      
+      <div class="post-card-meta">
+        <div class="post-card-author">
+          <nuxt-link :to="{name:'user', params:{user:post.author}}">
+            <img :src="`${$config.IMAGES_CDN}u/${post.author}/avatar`" class="post-card-author-avatar" alt="Author">
+          </nuxt-link>
+          
+          <div>
+            <nuxt-link class="font-weight-bold" :to="{name:'user', params:{user:post.author}}">
+              @{{ post.author }}
+            </nuxt-link>
+            
+            <b-badge variant="info" class="ml-1">
+              {{ getReputation(post.author) }}
+            </b-badge>
+            
+            <div class="small text-muted">
+              <timeago :datetime="createdAt" :title="createdAt.toLocaleString()" :auto-update="60" />
+              
+              <template v-if="type !== 'comments'">
+                <span class="mx-1">•</span>
+                <nuxt-link :to="{name:'sort-tag', params:{sort:'trending', tag: post.parent_permlink}}">
+                  {{ getCommunity(post.parent_permlink) }}
+                </nuxt-link>
+              </template>
+            </div>
+          </div>
+        </div>
+        
+        <div v-if="type !== 'comments' && post.score_promoted > 0" class="ml-auto">
+          <b-badge variant="warning" class="text-uppercase">Promoted</b-badge>
+        </div>
+      </div>
+      
       <template v-if="!shouldShowPost">
         <template v-if="$auth.loggedIn">
-          <a class="cursor-pointer" @click.prevent="showNsfw = true">Reveal this post</a> or adjust your <nuxt-link :to="{name:'user-settings', params:{user:$auth.user.username}}">
-            display preferences
-          </nuxt-link>
+          <a class="cursor-pointer" @click.prevent="showNsfw = true">Reveal this post</a> or adjust your 
+          <nuxt-link :to="{name:'user-settings', params:{user:$auth.user.username}}">display preferences</nuxt-link>
         </template>
-
         <template v-else>
           <a class="cursor-pointer" @click.prevent="showNsfw = true">Reveal this post</a>
         </template>
       </template>
-
+      
       <template v-else>
-        <nuxt-link :to="{ name:'user-post', params: { user: post.author, post: post.permlink }}" class="h5 font-weight-bold d-block mt-2">
+        <nuxt-link :to="{ name:'user-post', params: { user: post.author, post: post.permlink }}" class="post-card-title">
           {{ post.title }}
         </nuxt-link>
-
-        <nuxt-link class="text-reset text-break d-block" :to="{ name:'user-post', params: { user: post.author, post: post.permlink }}">
+        
+        <nuxt-link class="post-card-excerpt" :to="{ name:'user-post', params: { user: post.author, post: post.permlink }}">
           {{ extractBodySummary(post.desc) }}
         </nuxt-link>
       </template>
-    </b-media>
-
-    <template #footer>
-      <div class="d-flex justify-content-between align-items-center">
-        <div class="d-flex align-items-center">
-          <votes
-            :author="post.author"
-            :permlink="post.permlink"
-            :active-votes="post.active_votes"
-            :rshares="post.vote_rshares"
-            :payout="post.pending_token || post.total_payout_value"
-            :is-comment="!post.main_post"
-          />
-
-          <div class="mr-2">
-            <nuxt-link class="btn text-nowrap" :to="{name:'user-post', hash:'#comments', params:{ user: post.author, post:post.permlink }}">
-              <fa-icon :icon="['far', 'comments']" /> {{ post.children }}
-            </nuxt-link>
-          </div>
-
+      
+      <div class="post-card-stats mt-3">
+        <div class="post-card-stat">
+          <fa-icon :icon="['far', 'heart']" /> {{ post.active_votes.length }}
+        </div>
+        
+        <div class="post-card-stat">
+          <fa-icon :icon="['far', 'comments']" /> {{ post.children }}
+        </div>
+        
+        <div class="post-card-stat">
+          <fa-icon icon="dollar-sign" /> {{ post.pending_token || post.total_payout_value }}
+        </div>
+        
+        <div class="post-card-stat">
           <extra-actions :post="post" />
         </div>
-
-        <payout :post="post" />
       </div>
-    </template>
-  </b-card>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -213,10 +199,132 @@ export default {
       const account = this.accounts[author]
 
       return account ? account.reputation : ''
+    },
+    
+    toggle() {
+      this.showNsfw = !this.showNsfw
     }
   }
 }
 </script>
 
-<style>
+<style lang="scss">
+.post-card {
+  background-color: #ffffff;
+  border-radius: 0.75rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.03);
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  }
+}
+
+.post-card-image-container {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+}
+
+.post-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+  
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+.nsfw-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.post-card-content {
+  padding: 1.25rem;
+}
+
+.reblog-text {
+  color: #0d6efd;
+  font-style: italic;
+  font-size: 0.875rem;
+}
+
+.post-card-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.post-card-author {
+  display: flex;
+  align-items: center;
+}
+
+.post-card-author-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 0.75rem;
+  border: 2px solid #f8f9fa;
+}
+
+.post-card-title {
+  display: block;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #212529;
+  line-height: 1.4;
+  
+  &:hover {
+    color: #0d6efd;
+    text-decoration: none;
+  }
+}
+
+.post-card-excerpt {
+  display: block;
+  color: #6c757d;
+  margin-bottom: 1rem;
+  
+  &:hover {
+    color: #495057;
+    text-decoration: none;
+  }
+}
+
+.post-card-stats {
+  display: flex;
+  justify-content: space-between;
+  color: #6c757d;
+  font-size: 0.875rem;
+  border-top: 1px solid #f0f2f5;
+  padding-top: 1rem;
+}
+
+.post-card-stat {
+  display: flex;
+  align-items: center;
+  
+  .svg-inline--fa {
+    margin-right: 0.25rem;
+  }
+}
 </style>

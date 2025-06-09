@@ -1,4 +1,4 @@
-$enable-rounded: false;
+$enable-rounded: true;
 
 @function encodeColor($string) {
   @if type-of($string) == "color" and str-index(#{$string}, "#") == 1 {
@@ -16,3 +16,4 @@ $enable-rounded: false;
 
 @import "./light-mode";
 @import "./dark-mode";
+@import "./layout";

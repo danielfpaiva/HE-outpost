@@ -63,30 +63,6 @@ $dark-input-color: #fff;
     background-color: rgba(255, 255, 255, 0.05);
   }
 
-  .navbar-light {
-    background-color: #1a1a1a; // Darker background for navbar
-    
-    .navbar-toggler-icon {
-      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.7%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
-    }
-
-    .navbar-nav .nav-link {
-      color: $dark-color;
-      
-      &:after {
-        background: $dark-link-color;
-      }
-      
-      &:hover, &.active {
-        color: lighten($dark-color, 15%);
-      }
-    }
-
-    .navbar-brand {
-      color: $dark-color;
-    }
-  }
-
   .bg-light {
     background-color: $dark-secondary !important;
   }
@@ -94,13 +70,6 @@ $dark-input-color: #fff;
   .border,
   .border-bottom {
     border-color: $dark-border-color !important;
-  }
-
-  .navbar-btn {
-    @include media-breakpoint-up("md") {
-      border-color: $dark-input-border-color;
-      background-color: $dark-input-bg-color;
-    }
   }
 
   .btn-warning {
@@ -361,161 +330,108 @@ $dark-input-color: #fff;
     }
   }
 
-  /*-------------------------------
-  | Wallet Page
-  -------------------------------*/
-  .user-wallet {
-    .dropdown-toggle {
-      &.disabled {
-        color: $dark-color !important;
-      }
-    }
+  /* Layout specific dark mode styles */
+  .main-layout-wrapper {
+    background-color: $dark-bg-color;
   }
 
-  /*-------------------------------
-  | Post
-  -------------------------------*/
-  .vote-weight-popover {
-    &.popover {
-      min-width: 300px;
-      background-color: $dark-secondary;
-    }
-
-    .popover-body {
-      color: $dark-color;
-    }
-
-    .arrow::after {
-      border-right-color: $dark-secondary;
-    }
+  .sidebar-container {
+    background-color: $dark-secondary;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
   }
 
-  .btn-vote {
+  .sidebar-nav-item {
     color: $dark-color;
+    
+    &:hover, &.active {
+      background-color: rgba(255, 255, 255, 0.05);
+      color: $dark-link-color;
+    }
+  }
 
+  .main-header {
+    background-color: $dark-secondary;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  }
+
+  .search-input {
+    background-color: lighten($dark-secondary, 5%);
+    border-color: $dark-border-color;
+    color: $dark-color;
+    
+    &:focus {
+      background-color: lighten($dark-secondary, 8%);
+      border-color: $dark-link-color;
+    }
+  }
+
+  .search-icon {
+    color: $dark-color;
+  }
+
+  .header-action-btn {
+    background-color: lighten($dark-secondary, 5%);
+    color: $dark-color;
+    
+    &:hover {
+      background-color: lighten($dark-secondary, 8%);
+      color: $dark-link-color;
+    }
+  }
+
+  .main-content-card {
+    background-color: $dark-secondary;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  }
+
+  .post-card {
+    background-color: lighten($dark-secondary, 3%);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    
+    &:hover {
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+  }
+
+  .post-card-title {
+    color: $dark-color;
+    
+    &:hover {
+      color: $dark-link-color;
+    }
+  }
+
+  .post-card-excerpt {
+    color: darken($dark-color, 15%);
+    
     &:hover {
       color: $dark-color;
     }
   }
 
-  /*-------------------------------
-  | Author Card
-  -------------------------------*/
-  .author-card {
-    .author-dropdown {
-      background-color: $dark-secondary;
-      border: 1px solid $dark-border-color;
+  .post-card-stats {
+    border-top-color: lighten($dark-secondary, 8%);
+    color: darken($dark-color, 15%);
+  }
+
+  .dropdown-menu {
+    background-color: lighten($dark-secondary, 5%);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.25);
+  }
+
+  .dropdown-item {
+    &:hover {
+      background-color: lighten($dark-secondary, 10%);
     }
   }
 
-  .tag-scrolling-wrapper {
-    .slider-nav {
-      background: rgba($color: $dark-bg-color, $alpha: 0.8);
-      color: $dark-color;
-    }
+  .mobile-menu-toggle,
+  .header-action-btn {
+    background-color: lighten($dark-secondary, 5%);
+    color: $dark-color;
     
-    .tag-link {
-      background-color: rgba(255, 255, 255, 0.05);
-      
-      &:hover {
-        background-color: rgba(255, 255, 255, 0.1);
-      }
+    &:hover {
+      background-color: lighten($dark-secondary, 8%);
     }
-  }
-
-  /*-------------------------------
-  | NFT Marketplace
-  -------------------------------*/
-  .nft-card {
-    border-color: $dark-border-color;
-    box-shadow: 0 0 8px 0 rgba($color: $light, $alpha: 0.1);
-    background-color: $dark-secondary;
-  }
-
-  .transaction-history-list {
-    scrollbar-color: $dark-border-color $dark-secondary;
-
-    &::-webkit-scrollbar {
-      background-color: $dark-secondary;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      background-color: $dark-border-color;
-    }
-
-    .list-group-item {
-      background-color: $dark-secondary;
-
-      &:nth-child(even) {
-        background-color: rgba(255, 255, 255, 0.03);
-      }
-    }
-  }
-
-  /*-------------------------------
-  | Search
-  -------------------------------*/
-  .search-form {
-    hr {
-      border-color: darken($color: $dark-color, $amount: 50);
-    }
-
-    .search-label {
-      color: $dark-color;
-      
-      &.active {
-        color: $dark-link-color;
-      }
-    }
-
-    .search-input {
-      background-color: transparent;
-      border-color: transparent;
-      color: $dark-color;
-      background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='#{encodeColor($dark-color)}' d='M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z'/%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3C/svg%3E");
-    }
-
-    .divider {
-      &:after {
-        background-color: $dark-link-color;
-      }
-    }
-  }
-
-  .b-calendar-grid-body {
-    .text-dark {
-      @extend .text-light;
-    }
-
-    .btn-light {
-      @extend .btn-dark;
-    }
-  }
-
-  /*-------------------------------
-  | Diesel Pool
-  -------------------------------*/
-  .swap-currency-input {
-    background-color: $dark-secondary;
-
-    input {
-      color: $dark-color;
-
-      &::placeholder {
-        color: darken($color: $dark-color, $amount: 30);
-      }
-    }
-
-    button {
-      color: $dark-color;
-      
-      &:hover {
-        background-color: rgba(255, 255, 255, 0.1);
-      }
-    }
-  }
-  
-  .page-header {
-    background: linear-gradient(135deg, $dark-secondary 0%, $dark-bg-color 100%);
   }
 }
