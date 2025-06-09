@@ -201,7 +201,7 @@ export default {
       return account ? account.reputation : ''
     },
 
-    toggle() {
+    toggle () {
       this.showNsfw = !this.showNsfw
     }
   }
