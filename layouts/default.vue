@@ -13,7 +13,7 @@
             <img src="/logo.png" alt="Logo">
           </nuxt-link>
         </div>
-     
+
         <div class="sidebar-nav">
           <nuxt-link v-if="$auth.loggedIn" class="sidebar-nav-item" :to="{name:'user-feed', params:{user: $auth.user.username}}">
             <fa-icon icon="rss" /> <span>Feed</span>
@@ -34,15 +34,15 @@
           <nuxt-link v-if="$config.DTF_ENABLED" class="sidebar-nav-item" :to="{name:'proposals'}">
             <fa-icon icon="file-alt" /> <span>Proposals</span>
           </nuxt-link>
-          
+
           <nuxt-link v-if="$config.POOL_ENABLED" class="sidebar-nav-item" :to="{name:'pool'}">
             <fa-icon icon="exchange-alt" /> <span>Pool</span>
           </nuxt-link>
-          
+
           <nuxt-link v-if="$auth.loggedIn" class="sidebar-nav-item" :to="{ name:'publish' }">
             <fa-icon icon="pencil-alt" /> <span>Create Post</span>
           </nuxt-link>
-          
+
           <nuxt-link v-if="$auth.loggedIn" class="sidebar-nav-item" :to="{ name:'user', params: {user: $auth.user.username} }">
             <fa-icon icon="user" /> <span>Profile</span>
           </nuxt-link>
@@ -54,7 +54,7 @@
           <nuxt-link v-if="$auth.loggedIn && $auth.user.username === issuer" class="sidebar-nav-item" :to="{ name:'dashboard' }">
             <fa-icon icon="tachometer-alt" /> <span>Dashboard</span>
           </nuxt-link>
-          
+
           <div class="mt-4">
             <a href="#" class="sidebar-nav-item" @click.prevent="changeColorMode">
               <template v-if="$colorMode.value === 'light'">
@@ -82,7 +82,7 @@
               >
             </div>
           </div>
-          
+
           <div class="header-actions">
             <button v-if="$config.NFT_ENABLED && $route.name && ($route.name.startsWith('nfts') || ['user-collection', 'user-gallery', 'user-collection-series', 'user-gallery-series'].includes($route.name))" 
               class="header-action-btn" 
@@ -92,12 +92,12 @@
                 {{ cart.length }}
               </div>
             </button>
-            
+
             <template v-if="$auth.loggedIn">
               <button class="header-action-btn" @click.prevent="$router.push({ name: 'user-notifications', params: { user: $auth.user.username } })">
                 <fa-icon icon="bell" />
               </button>
-              
+
               <div class="dropdown">
                 <img 
                   :src="`${$config.IMAGES_CDN}u/${$auth.user.username}/avatar`" 
@@ -121,7 +121,7 @@
                 </div>
               </div>
             </template>
-            
+
             <template v-else>
               <button class="btn btn-primary ml-2" @click.prevent="$bvModal.show('loginModal')">
                 Login
