@@ -17,7 +17,7 @@
       </div>
 
       <div v-else-if="type === 'feed' && rebloggedBy.length > 0" class="reblog-text mb-2">
-        <fa-icon icon="redo" /> 
+        <fa-icon icon="redo"/> 
         <nuxt-link v-for="(reblogger, i) of rebloggedBy" :key="i" :to="{name:'user', params:{user: reblogger}}">
           {{ reblogger }}
         </nuxt-link> reblogged
@@ -64,7 +64,7 @@
 
       <template v-if="!shouldShowPost">
         <template v-if="$auth.loggedIn">
-          <a class="cursor-pointer" @click.prevent="showNsfw = true">Reveal this post</a> or adjust your 
+          <a class="cursor-pointer" @click.prevent="showNsfw = true">Reveal this post</a> or adjust your
           <nuxt-link :to="{name:'user-settings', params:{user:$auth.user.username}}">display preferences</nuxt-link>
         </template>
         <template v-else>
