@@ -200,7 +200,7 @@ export default {
 
       return account ? account.reputation : ''
     },
-    
+
     toggle() {
       this.showNsfw = !this.showNsfw
     }
@@ -216,7 +216,7 @@ export default {
   margin-bottom: 1.5rem;
   overflow: hidden;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-  
+
   &:hover {
     transform: translateY(-3px);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
@@ -235,7 +235,7 @@ export default {
   height: 100%;
   object-fit: cover;
   transition: transform 0.3s ease;
-  
+
   &:hover {
     transform: scale(1.05);
   }
@@ -292,7 +292,7 @@ export default {
   margin-bottom: 0.5rem;
   color: #212529;
   line-height: 1.4;
-  
+
   &:hover {
     color: #0d6efd;
     text-decoration: none;
@@ -303,7 +303,7 @@ export default {
   display: block;
   color: #6c757d;
   margin-bottom: 1rem;
-  
+
   &:hover {
     color: #495057;
     text-decoration: none;
@@ -322,7 +322,7 @@ export default {
 .post-card-stat {
   display: flex;
   align-items: center;
-  
+
   .svg-inline--fa {
     margin-right: 0.25rem;
   }
