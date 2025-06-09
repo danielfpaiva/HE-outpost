@@ -17,7 +17,7 @@
       </div>
 
       <div v-else-if="type === 'feed' && rebloggedBy.length > 0" class="reblog-text mb-2">
-        <fa-icon icon="redo"/> 
+        <fa-icon icon="redo"/>
         <nuxt-link v-for="(reblogger, i) of rebloggedBy" :key="i" :to="{name:'user', params:{user: reblogger}}">
           {{ reblogger }}
         </nuxt-link> reblogged
