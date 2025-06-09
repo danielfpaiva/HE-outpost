@@ -13,7 +13,7 @@
 
     <div class="post-card-content">
       <div v-if="type === 'user-feed' && post.author !== user" class="reblog-text mb-2">
-        <fa-icon icon="redo" /> reblogged
+        <fa-icon icon="redo"/> reblogged
       </div>
 
       <div v-else-if="type === 'feed' && rebloggedBy.length > 0" class="reblog-text mb-2">
