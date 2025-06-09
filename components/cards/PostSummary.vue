@@ -5,12 +5,12 @@
         <b-badge variant="danger">NSFW</b-badge>
         <button class="btn btn-sm btn-light mt-2" @click="toggle">Reveal</button>
       </div>
-      
+
       <nuxt-link v-else :to="{ name:'user-post', params: { user: post.author, post: post.permlink }}">
         <img :src="largeThumbnail" class="post-card-image" :alt="post.title">
       </nuxt-link>
     </div>
-    
+
     <div class="post-card-content">
       <div v-if="type === 'user-feed' && post.author !== user" class="reblog-text mb-2">
         <fa-icon icon="redo" /> reblogged
@@ -22,25 +22,25 @@
           {{ reblogger }}
         </nuxt-link> reblogged
       </div>
-      
+
       <div class="post-card-meta">
         <div class="post-card-author">
           <nuxt-link :to="{name:'user', params:{user:post.author}}">
             <img :src="`${$config.IMAGES_CDN}u/${post.author}/avatar`" class="post-card-author-avatar" alt="Author">
           </nuxt-link>
-          
+
           <div>
             <nuxt-link class="font-weight-bold" :to="{name:'user', params:{user:post.author}}">
               @{{ post.author }}
             </nuxt-link>
-            
+
             <b-badge variant="info" class="ml-1">
               {{ getReputation(post.author) }}
             </b-badge>
-            
+
             <div class="small text-muted">
               <timeago :datetime="createdAt" :title="createdAt.toLocaleString()" :auto-update="60" />
-              
+
               <template v-if="type !== 'comments'">
                 <span class="mx-1">•</span>
                 <nuxt-link :to="{name:'sort-tag', params:{sort:'trending', tag: post.parent_permlink}}">
@@ -50,12 +50,12 @@
             </div>
           </div>
         </div>
-        
+
         <div v-if="type !== 'comments' && post.score_promoted > 0" class="ml-auto">
           <b-badge variant="warning" class="text-uppercase">Promoted</b-badge>
         </div>
       </div>
-      
+
       <template v-if="!shouldShowPost">
         <template v-if="$auth.loggedIn">
           <a class="cursor-pointer" @click.prevent="showNsfw = true">Reveal this post</a> or adjust your 
@@ -65,30 +65,30 @@
           <a class="cursor-pointer" @click.prevent="showNsfw = true">Reveal this post</a>
         </template>
       </template>
-      
+
       <template v-else>
         <nuxt-link :to="{ name:'user-post', params: { user: post.author, post: post.permlink }}" class="post-card-title">
           {{ post.title }}
         </nuxt-link>
-        
+
         <nuxt-link class="post-card-excerpt" :to="{ name:'user-post', params: { user: post.author, post: post.permlink }}">
           {{ extractBodySummary(post.desc) }}
         </nuxt-link>
       </template>
-      
+
       <div class="post-card-stats mt-3">
         <div class="post-card-stat">
           <fa-icon :icon="['far', 'heart']" /> {{ post.active_votes.length }}
         </div>
-        
+
         <div class="post-card-stat">
           <fa-icon :icon="['far', 'comments']" /> {{ post.children }}
         </div>
-        
+
         <div class="post-card-stat">
           <fa-icon icon="dollar-sign" /> {{ post.pending_token || post.total_payout_value }}
         </div>
-        
+
         <div class="post-card-stat">
           <extra-actions :post="post" />
         </div>
