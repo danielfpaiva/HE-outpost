@@ -43,9 +43,15 @@
 
               <template v-if="type !== 'comments'">
                 <span class="mx-1">•</span>
-                <nuxt-link :to="{name:'sort-tag', params:{sort:'trending', tag: post.parent_permlink}}">
+                <!-- Fix: Only render nuxt-link if post.parent_permlink exists -->
+                <template v-if="post.parent_permlink">
+                  <nuxt-link :to="{name:'sort-tag', params:{sort:'trending', tag: post.parent_permlink}}">
+                    {{ getCommunity(post.parent_permlink) }}
+                  </nuxt-link>
+                </template>
+                <template v-else>
                   {{ getCommunity(post.parent_permlink) }}
-                </nuxt-link>
+                </template>
               </template>
             </div>
           </div>
@@ -122,6 +128,8 @@ export default {
 
   data () {
     return {
+      error: null,
+      errorText: '',
       showNsfw: false,
       nsfwPref: 'warn'
     }
