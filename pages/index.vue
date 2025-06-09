@@ -6,7 +6,7 @@
 
     <template v-else>
       <h2 class="section-title mb-4">Featured Posts</h2>
-      
+
       <div class="post-highlights">
         <post-summary v-for="(post,i) of curated" :key="i" :post="post" type="feed" />
       </div>
@@ -102,7 +102,7 @@ export default {
   font-weight: 600;
   position: relative;
   padding-bottom: 0.5rem;
-  
+
   &:after {
     content: '';
     position: absolute;
