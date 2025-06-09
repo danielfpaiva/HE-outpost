@@ -107,16 +107,12 @@
 import { mapGetters } from 'vuex'
 import { proxifyImageUrl } from '@/utils/proxify-url'
 import { extractImageLink, extractBodySummary } from '@/utils/extract-content'
-import Votes from '@/components/Votes.vue'
 import ExtraActions from '@/components/ExtraActions.vue'
-import Payout from '@/components/Payout.vue'
 
 export default {
   name: 'PostSummary',
 
   components: {
-    Votes,
-    Payout,
     ExtraActions
   },
 
